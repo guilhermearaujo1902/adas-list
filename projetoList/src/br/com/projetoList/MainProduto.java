@@ -1,5 +1,7 @@
 package br.com.projetoList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainProduto {
@@ -7,6 +9,7 @@ public class MainProduto {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
+		List<String> listaProdutos = new ArrayList<String>();
 
 		int opcao;
 
@@ -23,20 +26,60 @@ public class MainProduto {
 
 			switch (opcao) {
 			case 1:
-				// Listar os produtos
+				
+				if (listaProdutos.size() > 0) {
+					System.out.println("\n- Lista de Produtos -");
+					for (String produto: listaProdutos) {
+						System.out.println(produto);
+					}
+				} else {
+					System.out.println("Nenhum produto cadastrado ainda ...");
+				}
+				System.out.println("\n");
+				
 				break;
 			case 2:
-				// Adicionar novos elementos
+				System.out.println("Digite o nome do produto: ");
+				String novoProduto = scan.next();
+				
+				listaProdutos.add(novoProduto);
+				
+				System.out.println("\nProduto cadastrado com sucesso!");
 				break;
 			case 3:
-				// Editar elementos
+				System.out.println("Qual nome do produto a ser alterado? ");
+				String produtoAtual = scan.next();
+				
+				int index = listaProdutos.indexOf(produtoAtual);
+				
+				if (index < 0) {
+					System.out.println("\nProduto não encontrado com esse nome...");
+				} else {
+					System.out.println("Qual novo nome para o produto? ");
+					String produtoAlterado = scan.next();
+					listaProdutos.set(index, produtoAlterado);
+					System.out.println("\nProduto alterado com sucesso!");
+				}
+				
 				break;
 			case 4:
-				// Excluir elementos
+				System.out.println("Qual nome do produto a ser excluído? ");
+				String excluirProduto = scan.next();
+				
+				boolean checkExclusao =  listaProdutos.remove(excluirProduto);
+				
+				if (checkExclusao == true) {
+					System.out.println("\nProduto excluído com sucesso!");
+				} else {
+					System.out.println("\nProduto não encontrado com esse nome...");
+				}
+				
 				break;
 			case 0:
 				System.out.println("Saindo do menu ...");
 				break;
+			default: 
+				System.out.println("\nOpção de menu inválida!");
 			}
 
 		} while (opcao != 0);
