@@ -13,6 +13,7 @@ public class MainProduto {
 
 		int opcao;
 
+		// Menu de interação
 		do {
 			System.out.println("*** Menu de opções ***");
 			System.out.println("[1] - Listar produtos ");
